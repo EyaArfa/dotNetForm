@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Concerts;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name">Nom</label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Veuillez saisir votre nom">
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type">Type</label>
+        <input asp-for="Type" type="text" class="form-control" placeholder="Veuillez saisir votre nom">
+        <span asp-validation-for="Type" class="form-text text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="Date" class="control-label">Date</label>
+        <input asp-for="Date" class="form-control" asp-format="{0:dd.MM.yyyy hh:mm}">
+    </div>
+    <button type="submit" class="btn btn-primary" value="Create">Edit</button>
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}

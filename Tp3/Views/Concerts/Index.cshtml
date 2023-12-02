@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Concerts>
+<div>
+    <div><a class="btn btn-primary mb-2" asp-controller="Concerts" asp-action="Create">New Concert</a></div>
+</div>
+<table class="table">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col" >Date</th>
+        <th scope="col">Actions</th>
+    </tr>
+
+    @foreach (var concert in Model)
+    {
+        <tr scope="raw">
+            <td >@concert.Name </td>
+            <td >@concert.Type</td>
+            <td >@concert.Date</td>
+            <td>
+                @{
+                    var modal = "#id"+ @concert.Id.ToString();
+                    var id ="id"+ @concert.Id.ToString();
+                    Console.WriteLine(modal +"this is the id" + id);
+                }
+                
+                <a class="btn btn-warning" asp-controller="Concerts" asp-action="Edit" asp-route-id="@concert.Id"><i class="bi bi-pencil-square"></i></a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target=@modal><i class="bi bi-trash-fill"></i></button>
+
+                <div class="modal fade" id=@id tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Deleting concert... </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Do you want to delete <b> @concert.Name</b> concert  ?</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a asp-controller="Concerts" asp-action="Delete" asp-route-id="@concert.Id" class="btn btn-primary">Valider</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+
+        </tr>
+    }
+</table>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#id1">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="id1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
